@@ -5,9 +5,10 @@ from logging.handlers import RotatingFileHandler
 from bs4 import BeautifulSoup
 from email_notifications import send_email_notification
 from data_manager import load_previous_sellers, save_current_sellers
+from config import LOG_FILE_PATH
 
 handler = RotatingFileHandler(
-    '/Users/livinginexile/Documents/Discogs Python/Sales Monitor/script.log',
+    LOG_FILE_PATH,
     maxBytes=5 * 1024 * 1024,  # 5 MB
     backupCount=5
 )
