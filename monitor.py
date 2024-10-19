@@ -6,7 +6,6 @@ from bs4 import BeautifulSoup
 from email_notifications import send_email_notification
 from data_manager import load_previous_sellers, save_current_sellers
 
-# Configure logging
 handler = RotatingFileHandler(
     '/Users/livinginexile/Documents/Discogs Python/Sales Monitor/script.log',
     maxBytes=5 * 1024 * 1024,  # 5 MB
@@ -82,7 +81,6 @@ def monitor_individual_releases(release_ids):
             if new_sellers:
                 logging.info(f"New sellers found for release ID {release_id}: {new_sellers}")
                 send_email_notification(release_id, release_title, new_sellers)
-                # Update the cumulative list with new sellers
                 if release_id not in previous_sellers:
                     previous_sellers[release_id] = set()
                 previous_sellers[release_id].update(new_sellers)
@@ -92,7 +90,6 @@ def monitor_individual_releases(release_ids):
         except Exception as e:
             logging.error(f"Error checking release ID {release_id}: {e}")
 
-    # Save the updated cumulative sellers
     save_current_sellers(previous_sellers)
     logging.debug(f"Saved cumulative previous_sellers: {previous_sellers}")
     logging.info("Script ends")
