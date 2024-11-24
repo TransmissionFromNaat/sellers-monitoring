@@ -8,3 +8,4 @@ sellers_data.json
 *.log
 venv/
 test.py
+*.log*
